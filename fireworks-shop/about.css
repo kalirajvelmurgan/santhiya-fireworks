@@ -1,0 +1,679 @@
+/* =========================================
+   ABOUT PAGE - PREMIUM DESIGN
+========================================= */
+
+.about-page,
+.about-hero,
+.about-story,
+.about-products,
+.about-why,
+.about-celebrations,
+.about-safety,
+.about-cta {
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.about-hero {
+    min-height: 620px;
+    padding: 100px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255, 190, 0, 0.16),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #10031d,
+            #291044,
+            #0d0218
+        );
+
+    color: white;
+}
+
+.about-hero-content {
+    max-width: 900px;
+}
+
+.about-badge {
+    display: inline-block;
+    padding: 9px 18px;
+    margin-bottom: 22px;
+
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    border-radius: 30px;
+
+    color: #ffd700;
+    background: rgba(255, 215, 0, 0.08);
+
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.about-hero h1 {
+    margin: 0;
+    font-size: clamp(40px, 6vw, 72px);
+    line-height: 1.08;
+    font-weight: 900;
+}
+
+.about-hero h1 span {
+    color: #ffd700;
+}
+
+.about-hero p {
+    max-width: 680px;
+    margin: 25px auto 35px;
+
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.about-hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.about-primary-btn,
+.about-secondary-btn {
+    padding: 14px 25px;
+    border-radius: 12px;
+
+    text-decoration: none;
+    font-weight: 800;
+}
+
+.about-primary-btn {
+    color: #180820;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd700,
+            #ffad00
+        );
+}
+
+.about-secondary-btn {
+    color: #ffd700;
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+
+/* =========================================
+   COMMON SECTION
+========================================= */
+
+.about-story,
+.about-products,
+.about-why,
+.about-celebrations {
+    padding: 90px 20px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            180deg,
+            #10031c,
+            #170526
+        );
+}
+
+.about-section-heading {
+    max-width: 800px;
+    margin: 0 auto 55px;
+    text-align: center;
+}
+
+.about-section-heading span {
+    color: #ffd700;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.about-section-heading h2 {
+    margin: 12px 0;
+
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1.15;
+}
+
+.about-section-heading h2 strong {
+    color: #ffd700;
+}
+
+.about-section-heading p {
+    margin: 15px auto 0;
+
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   STORY
+========================================= */
+
+.about-story-grid {
+    max-width: 1100px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 55px;
+
+    align-items: center;
+}
+
+.about-story-image {
+    min-height: 400px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 25px;
+
+    border: 1px solid rgba(255, 215, 0, 0.25);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 215, 0, 0.18),
+            transparent 55%
+        ),
+        rgba(255, 255, 255, 0.04);
+}
+
+.firework-icon {
+    position: relative;
+    z-index: 2;
+
+    font-size: 130px;
+
+    filter:
+        drop-shadow(
+            0 0 30px
+            rgba(255, 215, 0, 0.5)
+        );
+}
+
+.about-story-content h3 {
+    margin-top: 0;
+
+    color: #ffd700;
+    font-size: 30px;
+}
+
+.about-story-content p {
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.8;
+    font-size: 16px;
+}
+
+.about-story-content strong {
+    color: #ffd700;
+}
+
+
+/* =========================================
+   PRODUCT COLLECTION
+========================================= */
+
+.about-product-grid {
+    max-width: 1150px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.about-product-card {
+    padding: 30px 25px;
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    border: 1px solid rgba(255, 215, 0, 0.18);
+
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    transition: 0.3s;
+}
+
+.about-product-card:hover {
+    transform: translateY(-6px);
+
+    border-color: rgba(255, 215, 0, 0.55);
+
+    box-shadow:
+        0 15px 35px
+        rgba(0, 0, 0, 0.3);
+}
+
+.about-product-card > div {
+    font-size: 45px;
+    margin-bottom: 12px;
+}
+
+.about-product-card h3 {
+    margin: 8px 0;
+
+    color: #ffd700;
+    font-size: 20px;
+}
+
+.about-product-card p {
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   WHY CHOOSE US
+========================================= */
+
+.about-why {
+    background:
+        linear-gradient(
+            135deg,
+            #1b0730,
+            #0e0218
+        );
+}
+
+.why-grid {
+    max-width: 1100px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.why-card {
+    padding: 28px 20px;
+
+    text-align: center;
+
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    border: 1px solid rgba(255, 215, 0, 0.18);
+}
+
+.why-icon {
+    font-size: 38px;
+}
+
+.why-card h3 {
+    color: #ffd700;
+    margin: 15px 0 10px;
+}
+
+.why-card p {
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+
+/* =========================================
+   CELEBRATIONS
+========================================= */
+
+.celebration-grid {
+    max-width: 1000px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.celebration-card {
+    padding: 25px 15px;
+
+    text-align: center;
+
+    border-radius: 16px;
+
+    background:
+        rgba(255, 255, 255, 0.04);
+
+    border: 1px solid rgba(255, 215, 0, 0.15);
+}
+
+.celebration-card span {
+    font-size: 40px;
+}
+
+.celebration-card h3 {
+    color: #ffd700;
+    margin: 12px 0 7px;
+}
+
+.celebration-card p {
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   SAFETY
+========================================= */
+
+.about-safety {
+    padding: 70px 20px;
+
+    background: #0d0217;
+    color: white;
+}
+
+.safety-box {
+    max-width: 1000px;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    padding: 35px;
+
+    border-radius: 20px;
+
+    border: 1px solid rgba(255, 215, 0, 0.25);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 215, 0, 0.08),
+            rgba(255, 255, 255, 0.03)
+        );
+}
+
+.safety-icon {
+    font-size: 60px;
+}
+
+.safety-box span {
+    color: #ffd700;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+.safety-box h2 {
+    margin: 8px 0;
+
+    font-size: 28px;
+}
+
+.safety-box p {
+    margin: 8px 0;
+
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   CTA
+========================================= */
+
+.about-cta {
+    padding: 100px 20px;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 215, 0, 0.18),
+            transparent 45%
+        ),
+        #150326;
+
+    color: white;
+}
+
+.about-cta span {
+    color: #ffd700;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.about-cta h2 {
+    margin: 15px 0;
+
+    font-size: clamp(30px, 5vw, 50px);
+}
+
+.about-cta h2 strong {
+    color: #ffd700;
+}
+
+.about-cta p {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.about-cta a {
+    display: inline-block;
+
+    margin-top: 20px;
+
+    padding: 15px 28px;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd700,
+            #ffad00
+        );
+
+    color: #180820;
+
+    text-decoration: none;
+    font-weight: 900;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.about-footer {
+    padding: 45px 20px;
+
+    text-align: center;
+
+    background: #09010f;
+    color: white;
+}
+
+.about-footer img {
+    width: 75px;
+    height: auto;
+}
+
+.about-footer h3 {
+    margin: 12px 0 5px;
+
+    color: #ffd700;
+}
+
+.about-footer p {
+    margin: 5px 0;
+
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.about-footer .copyright {
+    margin-top: 25px;
+
+    font-size: 12px;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 800px) {
+
+    .about-hero {
+        min-height: 550px;
+        padding: 70px 18px;
+    }
+
+    .about-hero h1 {
+        font-size: 38px;
+    }
+
+    .about-hero p {
+        font-size: 15px;
+    }
+
+    .about-story-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .about-story-image {
+        min-height: 280px;
+    }
+
+    .about-product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .about-product-card {
+        padding: 20px 12px;
+    }
+
+    .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .celebration-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .safety-box {
+        flex-direction: column;
+        text-align: center;
+        padding: 25px 18px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .about-hero {
+        min-height: 500px;
+    }
+
+    .about-hero h1 {
+        font-size: 32px;
+    }
+
+    .about-section-heading h2 {
+        font-size: 29px;
+    }
+
+    .about-story,
+    .about-products,
+    .about-why,
+    .about-celebrations {
+        padding: 65px 15px;
+    }
+
+    .about-product-grid,
+    .why-grid,
+    .celebration-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .about-product-card > div {
+        font-size: 35px;
+    }
+
+    .about-product-card h3,
+    .why-card h3,
+    .celebration-card h3 {
+        font-size: 16px;
+    }
+
+    .about-product-card p,
+    .why-card p,
+    .celebration-card p {
+        font-size: 12px;
+    }
+
+}
+/* =========================================
+   LEGAL HIGHLIGHT
+========================================= */
+
+.legal-highlight {
+    margin: 22px 0;
+    padding: 18px 20px;
+
+    border-left: 3px solid #ffd700;
+    border-radius: 10px;
+
+    background: rgba(255, 215, 0, 0.07);
+}
+
+.legal-highlight p {
+    margin: 6px 0;
+}
+
+.legal-note {
+    margin-top: 20px !important;
+
+    padding-top: 15px;
+
+    border-top: 1px solid rgba(255, 215, 0, 0.15);
+
+    font-size: 14px !important;
+}

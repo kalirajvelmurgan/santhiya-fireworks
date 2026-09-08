@@ -1,0 +1,698 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Santhiya Firework Agencies</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =========================================
+           TOP RIBBON BAR
+        ========================================= */
+
+        .top-bar {
+            background: linear-gradient(135deg, #2b0845, #51127c, #2b0845);
+            color: #ffffff;
+            padding: 12px 5%;
+            font-size: 14px;
+            font-weight: 600;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+
+            border-bottom: 2px solid #ffd700;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+
+            position: relative;
+            z-index: 100;
+        }
+
+        .offer-badge {
+            background: linear-gradient(45deg, #ffd700, #ffa500);
+            color: #1a002c;
+
+            padding: 6px 14px;
+            border-radius: 30px;
+
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
+
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+
+            display: inline-block;
+            margin-right: 8px;
+
+            animation: pulseGlow 2s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 0 18px rgba(255, 215, 0, 0.9);
+            }
+
+            100% {
+                box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+            }
+        }
+
+        .phone-number a {
+            color: #ffd700;
+            text-decoration: none;
+
+            font-size: 15px;
+            font-weight: 700;
+
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+
+            padding: 8px 16px;
+            border-radius: 25px;
+
+            transition: all 0.3s ease;
+        }
+
+        .phone-number a:hover {
+            background: #ffd700;
+            color: #1a002c;
+
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+        }
+
+
+        /* =========================================
+           NAVIGATION MENU
+        ========================================= */
+
+        .main-navbar {
+            width: 100%;
+
+            background: #12051f;
+
+            border-bottom: 1px solid rgba(255, 215, 0, 0.25);
+
+            padding: 13px 5%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+
+            position: relative;
+            z-index: 20;
+
+            box-sizing: border-box;
+        }
+
+        .nav-logo a {
+            color: #ffd700;
+            text-decoration: none;
+
+            font-size: 18px;
+            font-weight: 800;
+
+            white-space: nowrap;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            gap: 5px;
+
+            flex-wrap: wrap;
+        }
+
+        .nav-menu a {
+            color: #ffffff;
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            padding: 9px 11px;
+
+            border-radius: 7px;
+
+            transition: all 0.25s ease;
+        }
+
+        .nav-menu a:hover {
+            background: #ffd700;
+            color: #1a002c;
+
+            box-shadow: 0 0 12px rgba(255, 215, 0, 0.35);
+        }
+
+
+        /* =========================================
+           MEGA OFFER BANNER
+        ========================================= */
+
+        .mega-offer-banner {
+            background: rgba(43, 8, 69, 0.6);
+
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            border-radius: 16px;
+
+            padding: 20px;
+
+            margin: 25px auto 15px;
+
+            max-width: 650px;
+
+            text-align: center;
+
+            backdrop-filter: blur(12px);
+
+            box-shadow:
+                0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mega-offer-banner::before {
+            content: '';
+
+            position: absolute;
+
+            top: 0;
+            left: -100%;
+
+            width: 100%;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255, 215, 0, 0.2),
+                    transparent
+                );
+
+            transition: 0.5s;
+
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        .mega-offer-banner h2 {
+            color: #ffd700;
+
+            font-size: 26px;
+            font-weight: 800;
+
+            margin: 0 0 8px 0;
+
+            text-transform: uppercase;
+            letter-spacing: 1px;
+
+            text-shadow:
+                0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .mega-offer-banner p {
+            color: #e0c3fc;
+
+            font-size: 15px;
+
+            margin: 0;
+
+            font-weight: 500;
+        }
+
+
+        /* =========================================
+           LOGO
+        ========================================= */
+
+        .brand-logo-container {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .site-logo {
+            max-width: 260px;
+
+            width: 100%;
+            height: auto;
+
+            display: block;
+
+            margin: 0 auto;
+
+            filter:
+                drop-shadow(
+                    0px 8px 20px
+                    rgba(147, 51, 234, 0.5)
+                );
+
+            transition: transform 0.4s ease;
+        }
+
+        .site-logo:hover {
+            transform: scale(1.04);
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 900px) {
+
+            .main-navbar {
+                flex-direction: column;
+
+                padding: 12px 10px;
+
+                gap: 10px;
+            }
+
+            .nav-menu {
+                width: 100%;
+
+                justify-content: center;
+
+                gap: 3px;
+            }
+
+            .nav-menu a {
+                font-size: 13px;
+
+                padding: 8px 9px;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .top-bar {
+                flex-direction: column;
+
+                gap: 12px;
+
+                text-align: center;
+
+                padding: 10px;
+            }
+
+            .nav-logo a {
+                font-size: 17px;
+            }
+
+            .nav-menu {
+                display: grid;
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                width: 100%;
+
+                gap: 5px;
+            }
+
+            .nav-menu a {
+                text-align: center;
+
+                border:
+                    1px solid
+                    rgba(255, 215, 0, 0.15);
+            }
+
+            .mega-offer-banner h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         TOP RIBBON
+    ========================================= -->
+
+    <div class="top-bar">
+
+
+
+        <div>
+            <span class="offer-badge">
+                💥 MEGA DISCOUNT
+            </span>
+
+            <span>
+                DIWALI SPECIAL OFFER IS LIVE!
+            </span>
+        </div>
+
+        <div class="phone-number">
+          
+            📞 Call / WhatsApp:
+
+            <a href="tel:+918695978744">
+                +91 8695978744
+            </a>
+            
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         NAVIGATION MENU
+    ========================================= -->
+
+    <nav class="main-navbar">
+
+        <div class="nav-logo">
+
+            <a href="#home">
+                🎆 Santhiya Fireworks
+            </a>
+
+        </div>
+
+
+        <div class="nav-menu">
+
+            <a href="#home">
+                🏠 Home
+            </a>
+
+            <a href="#products">
+                🛍️ Products
+            </a>
+
+            <a href="estimate.html">
+                🧾 Estimate
+            </a>
+
+            <a href="about.html">
+        
+                ℹ️ About Us
+</a>
+
+            <a href="contact.html">
+                📞 Contact Us
+            </a>
+
+            <a href="#payment">
+                💳 Payment
+            </a>
+  
+
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================================
+         FIREWORK CANVAS
+    ========================================= -->
+
+    <canvas id="fireworks-canvas"></canvas>
+
+
+    <!-- =========================================
+         HOME
+    ========================================= -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+
+            <!-- LOGO -->
+
+            <div class="brand-logo-container">
+
+                <img
+                    src="logo.png"
+                    alt="Santhiya Firework Agencies Logo"
+                    class="site-logo"
+                >
+
+            </div>
+
+
+            <!-- OFFER -->
+
+            <div class="mega-offer-banner">
+
+                <h2>
+                    ✨ Flat 80% OFF - Grand Festive Sale ✨
+                </h2>
+
+                <p>
+                    Premium Sivakasi Fancy Crackers
+                    & Gift Boxes at Lowest Price
+                </p>
+
+            </div>
+
+
+            <!-- HERO TITLE -->
+
+            <h1>
+
+                Celebrate Brighter.<br>
+
+                <span class="highlight">
+                    Create Memories.
+                </span>
+
+            </h1>
+
+
+            <p>
+                Premium fireworks for every celebration.
+            </p>
+
+
+            <!-- BUTTONS -->
+
+            <div class="buttons">
+
+                <a
+                    href="#products"
+                    class="btn primary"
+                >
+                    🎇 Explore Products
+                </a>
+
+                <a href="admin.html" 
+                class= "btn secondary">
+                   🔐 admin only </a>
+                
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         PRODUCTS
+    ========================================= -->
+
+    <section
+        class="products-section"
+        id="products"
+    >
+
+        <div class="section-title">
+
+            <span>
+                OUR COLLECTION
+            </span>
+
+            <h2>
+                🎆 Explore Our Fireworks
+            </h2>
+
+            <p>
+                Choose your favourite fireworks
+                for your celebration.
+            </p>
+
+        </div>
+
+
+        <!-- PRODUCT TOOLBAR -->
+
+        <div class="fixed-cart-button"> 
+    <a href="#cart" onclick="addSelectedProductsToCart()"> 
+        🛒 Cart 
+    </a> 
+</div>
+       
+        <div class="product-toolbar">
+
+
+           <!-- SEARCH + CATEGORY -->
+
+<div class="product-filter-bar">
+
+    <!-- SEARCH -->
+
+    <div class="product-search">
+
+        🔎
+
+        <input
+            type="text"
+            id="product-search"
+            placeholder="Search fireworks..."
+        >
+
+    </div>
+
+
+    <!-- CATEGORY -->
+
+    <div class="category-dropdown">
+
+        <button
+            type="button"
+            class="category-toggle"
+            onclick="toggleCategoryMenu()">
+
+            📂
+            <span id="selected-category">
+                Category
+            </span>
+
+            <span class="category-arrow">▼</span>
+
+        </button>
+
+
+        <div
+            class="product-categories"
+            id="product-categories">
+
+        </div>
+
+    </div>
+
+</div>
+        <!-- PRODUCT LIST -->
+
+        <div class="products-grid">
+
+            <div id="product-list">
+                <!-- Products will appear here -->
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         CART
+    ========================================= -->
+
+    <section
+        class="cart-section"
+        id="cart"
+    >
+
+        <div class="section-title">
+
+            <span>
+                YOUR ORDER
+            </span>
+
+            <h2>
+                🛒 Your Cart
+            </h2>
+
+            <p>
+                Review your selected fireworks.
+            </p>
+
+        </div>
+
+
+        <div id="cart-items"></div>
+
+
+       <div class="cart-summary">
+
+    <div class="cart-price-row">
+        <span>Subtotal</span>
+        <strong>
+            ₹<span id="cart-subtotal">0</span>
+        </strong>
+    </div>
+
+    <div class="cart-price-row cart-discount-row">
+        <span>
+            🏷️ Discount
+            (<span id="cart-discount-percent">0</span>%)
+        </span>
+
+        <strong>
+            - ₹<span id="cart-discount">0</span>
+        </strong>
+    </div>
+
+    <div class="cart-savings">
+        🎉 You Save ₹<span id="cart-savings">0</span>
+    </div>
+
+    <div class="cart-final-row">
+        <span>Total Amount</span>
+
+        <strong>
+            ₹<span id="cart-total">0</span>
+        </strong>
+    </div>
+
+   <a
+    href="estimate.html"
+    class="btn primary">
+    🧾 View Estimate
+</a>
+
+</div>
+
+    </section>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+</body>
+</html>

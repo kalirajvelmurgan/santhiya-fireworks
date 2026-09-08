@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Admin Login - Santhiya Firework Agencies</title>
+
+<link rel="stylesheet" href="style.css">
+```
+
+</head>
+
+<body>
+
+```
+<section class="admin-login-section">
+
+    <div class="admin-login-box">
+
+        <div class="admin-logo">
+            <img src="logo.png" alt="Santhiya Firework Agencies">
+        </div>
+
+        <div class="admin-brand">
+            <h1>Santhiya</h1>
+            <span>FIREWORK AGENCIES</span>
+        </div>
+
+        <div class="admin-title">
+            <span>ADMIN PANEL</span>
+            <h2>Welcome Back 👋</h2>
+            <p>Login to manage your fireworks store.</p>
+        </div>
+
+        <div class="admin-form-group">
+
+            <label for="admin-email">
+                Email Address
+            </label>
+
+            <div class="admin-input-box">
+                <span>✉️</span>
+
+                <input
+                    type="email"
+                    id="admin-email"
+                    placeholder="Enter your email"
+                    autocomplete="username"
+                >
+            </div>
+
+        </div>
+
+        <div class="admin-form-group">
+
+            <label for="admin-password">
+                Password
+            </label>
+
+            <div class="admin-input-box">
+
+                <span>🔒</span>
+
+                <input
+                    type="password"
+                    id="admin-password"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                >
+
+                <button
+                    type="button"
+                    class="password-toggle"
+                    onclick="togglePassword()"
+                >
+                    👁️
+                </button>
+
+            </div>
+
+        </div>
+
+        <button
+            class="admin-login-btn"
+            onclick="adminLogin()"
+        >
+            <span>Login to Admin Panel</span>
+            <span>→</span>
+        </button>
+
+        <p id="login-message"></p>
+
+        <div class="admin-security">
+            🔐 Secure Admin Access
+        </div>
+
+        <div class="admin-footer">
+            © 2026 Santhiya Firework Agencies
+        </div>
+
+    </div>
+
+</section>
+
+<script src="admin.js"></script>
+
+<script>
+    function togglePassword() {
+
+        const password =
+            document.getElementById("admin-password");
+
+        const button =
+            document.querySelector(".password-toggle");
+
+        if (password.type === "password") {
+
+            password.type = "text";
+            button.textContent = "🙈";
+
+        } else {
+
+            password.type = "password";
+            button.textContent = "👁️";
+
+        }
+    }
+</script>
+```
+
+</body>
+
+</html>

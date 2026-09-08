@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Checkout - Santhiya Firework Agencies</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <section class="checkout-section">
+
+        <!-- CHECKOUT HEADER -->
+
+        <div class="section-title">
+
+            <span>SECURE CHECKOUT</span>
+
+            <h2>🧾 Complete Your Order</h2>
+
+            <p>
+                Review your order and enter your delivery details.
+            </p>
+
+        </div>
+
+
+        <div class="checkout-container">
+
+
+            <!-- =================================
+                 CUSTOMER DETAILS
+            ================================== -->
+
+            <div class="customer-form">
+
+                <div class="checkout-card-header">
+
+                    <div class="checkout-icon">
+                        👤
+                    </div>
+
+                    <div>
+                        <h3>Customer Details</h3>
+
+                        <p>
+                            Enter your details for order confirmation.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="customer-name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="customer-name"
+                        placeholder="Enter your full name"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="customer-phone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="customer-phone"
+                        placeholder="Enter your phone number"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="customer-address">
+                        Delivery Address
+                    </label>
+
+                    <textarea
+                        id="customer-address"
+                        rows="5"
+                        placeholder="Enter your complete delivery address"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="checkout-note">
+
+                    🔒 Your information is used only for
+                    processing your order.
+
+                </div>
+
+
+                <button
+                    class="btn primary confirm-btn"
+                    onclick="confirmOrder()"
+                >
+
+                    <span>✅</span>
+
+                    Confirm & Place Order
+
+                </button>
+
+            </div>
+
+
+
+            <!-- =================================
+                 ORDER SUMMARY
+            ================================== -->
+
+            <div class="order-summary">
+
+                <div class="checkout-card-header">
+
+                    <div class="checkout-icon">
+                        🛒
+                    </div>
+
+                    <div>
+
+                        <h3>Your Order</h3>
+
+                        <p>
+                            Review your selected fireworks.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PRODUCTS -->
+
+                <div id="checkout-items">
+
+                    <!-- Cart items will appear here -->
+
+                </div>
+
+
+                <!-- PRICE SUMMARY -->
+
+                <div class="price-summary">
+
+                    <div class="price-row">
+
+                        <span>
+                            Subtotal
+                        </span>
+
+                        <strong>
+                            ₹<span id="checkout-subtotal">0</span>
+                        </strong>
+
+                    </div>
+
+
+                    <div class="price-row discount-row">
+
+                        <span>
+                            🏷️ Discount
+                        </span>
+
+                        <strong>
+                            - ₹<span id="checkout-discount">0</span>
+                        </strong>
+
+                    </div>
+
+
+                    <div class="discount-info">
+
+                        🎉 Special discount applied to your order
+
+                    </div>
+
+
+                    <div class="checkout-total">
+
+                        <div>
+
+                            <span>
+                                Total Amount
+                            </span>
+
+                            <small>
+                                After discount
+                            </small>
+
+                        </div>
+
+                        <strong>
+                            ₹<span id="checkout-total">0</span>
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- BACK TO SHOP -->
+
+        <div class="checkout-back">
+
+            <a href="index.html">
+                ← Continue Shopping
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <script src="checkout.js"></script>
+
+</body>
+
+</html>
