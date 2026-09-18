@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Estimate - Santhiya Firework Agencies</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <section class="estimate-page">
+
+        <div class="estimate-header">
+            <span>SANTHIYA FIREWORK AGENCIES</span>
+
+            <h1>🧾 Estimate</h1>
+
+            <p>
+                Your selected fireworks estimate
+            </p>
+        </div>
+
+        <div class="estimate-box">
+
+           <div class="estimate-top">
+
+    <div class="estimate-company">
+        <div class="estimate-logo">
+    <img src="logo.png" alt="Santhiya Firework Agencies Logo">
+</div>
+        <div>
+            <h2>Santhiya Firework Agencies</h2>
+            <p>Premium Quality Fireworks</p>
+        </div>
+    </div>
+
+    <div class="estimate-number">
+        <span>ESTIMATE</span>
+        <strong id="estimate-number">---</strong>
+        <small>Date: <span id="estimate-date"></span></small>
+    </div>
+
+</div>
+
+            <table class="estimate-table">
+
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+
+                <tbody id="estimate-items">
+                </tbody>
+
+            </table>
+
+           <div class="estimate-total">
+
+    <div class="total-box">
+
+        <p>Estimated Total</p>
+
+        <div id="estimate-total" class="estimate-final-total">
+            ₹0
+        </div>
+
+    </div>
+
+</div>
+
+            <div class="estimate-actions">
+
+                <a
+                    href="index.html"
+                    class="estimate-btn back-btn">
+                    ← Back to Products
+                </a>
+
+                <button
+                    class="estimate-btn checkout-btn"
+                    onclick="goToCheckout()">
+                    Proceed to Checkout →
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+<script>
+
+    // ===============================
+    // GET CART
+    // ===============================
+
+    const cart =
+        JSON.parse(localStorage.getItem("cart")) || [];
+
+
+    const estimateItems =
+        document.getElementById("estimate-items");
+
+    const estimateTotal =
+        document.getElementById("estimate-total");
+
+
+    const SUPABASE_URL =
+        "https://nukadldqhfmtwuuugtse.supabase.co";
+
+    const SUPABASE_KEY =
+        "sb_publishable_ZaJOJNATcFrMyUY0E58WIQ_JrZT3KVW";
+
+
+    let discountPercent = 0;
+
+
+    // ===============================
+    // ESTIMATE NUMBER
+    // ===============================
+
+    document.getElementById(
+        "estimate-number"
+    ).textContent =
+        "EST-" +
+        Date.now().toString().slice(-6);
+
+
+    // ===============================
+    // DATE
+    // ===============================
+
+    document.getElementById(
+        "estimate-date"
+    ).textContent =
+        new Date().toLocaleDateString("en-IN");
+
+
+    // ===============================
+    // LOAD DISCOUNT
+    // ===============================
+
+    async function loadDiscount() {
+
+        try {
+
+            const response = await fetch(
+                SUPABASE_URL +
+                "/rest/v1/discount_settings?select=discount_percent&id=eq.1",
+                {
+                    headers: {
+                        "apikey": SUPABASE_KEY,
+                        "Authorization":
+                            "Bearer " + SUPABASE_KEY
+                    }
+                }
+            );
+
+
+            if (!response.ok) {
+                return 0;
+            }
+
+
+            const data =
+                await response.json();
+
+
+            if (data.length > 0) {
+
+                return Number(
+                    data[0].discount_percent || 0
+                );
+
+            }
+
+
+        } catch (error) {
+
+            console.error(
+                "Discount Error:",
+                error
+            );
+
+        }
+
+
+        return 0;
+    }
+
+
+    // ===============================
+    // LOAD ESTIMATE
+    // ===============================
+
+    async function loadEstimate() {
+
+        discountPercent =
+            await loadDiscount();
+
+
+        // ===============================
+        // EMPTY CART
+        // ===============================
+
+        if (cart.length === 0) {
+
+            estimateItems.innerHTML = `
+                <tr>
+                    <td
+                        colspan="4"
+                        class="estimate-empty">
+                        🛒 No products selected yet.
+                    </td>
+                </tr>
+            `;
+
+            estimateTotal.innerHTML = `
+                <div class="estimate-price-row">
+                    <span>Subtotal</span>
+                    <strong>₹0</strong>
+                </div>
+
+                <div class="estimate-price-row discount-row">
+                    <span>Discount (${discountPercent}%)</span>
+                    <strong>- ₹0</strong>
+                </div>
+
+                <div class="estimate-price-row final-row">
+                    <span>Final Total</span>
+                    <strong>₹0</strong>
+                </div>
+            `;
+
+            return;
+        }
+
+
+        // ===============================
+        // DISPLAY PRODUCTS
+        // ===============================
+
+        let subtotal = 0;
+
+        estimateItems.innerHTML = "";
+
+
+        cart.forEach(item => {
+
+            const price =
+                Number(item.price) || 0;
+
+            const quantity =
+                Number(item.quantity) || 0;
+
+            const itemTotal =
+                price * quantity;
+
+
+            subtotal += itemTotal;
+
+
+            estimateItems.innerHTML += `
+                <tr>
+
+                    <td>
+                        ${item.name}
+                    </td>
+
+                    <td>
+                        ₹${price.toLocaleString("en-IN")}
+                    </td>
+
+                    <td>
+                        ${quantity}
+                    </td>
+
+                    <td>
+                        ₹${itemTotal.toLocaleString("en-IN")}
+                    </td>
+
+                </tr>
+            `;
+
+        });
+
+
+        // ===============================
+        // DISCOUNT
+        // ===============================
+
+        const discountAmount =
+            Math.round(
+                subtotal *
+                discountPercent /
+                100
+            );
+
+
+        const finalTotal =
+            subtotal -
+            discountAmount;
+
+
+        // ===============================
+        // TOTAL
+        // ===============================
+
+        estimateTotal.innerHTML = `
+
+            <div class="estimate-price-row">
+
+                <span>
+                    Subtotal
+                </span>
+
+                <strong>
+                    ₹${subtotal.toLocaleString("en-IN")}
+                </strong>
+
+            </div>
+
+
+            <div class="estimate-price-row discount-row">
+
+                <span>
+                    🏷️ Discount (${discountPercent}%)
+                </span>
+
+                <strong>
+                    - ₹${discountAmount.toLocaleString("en-IN")}
+                </strong>
+
+            </div>
+
+
+            <div class="estimate-price-row">
+
+                <span>
+                    🎉 You Save
+                </span>
+
+                <strong>
+                    ₹${discountAmount.toLocaleString("en-IN")}
+                </strong>
+
+            </div>
+
+
+            <div class="estimate-price-row final-row">
+
+                <span>
+                    Final Total
+                </span>
+
+                <strong>
+                    ₹${finalTotal.toLocaleString("en-IN")}
+                </strong>
+
+            </div>
+
+        `;
+
+    }
+
+
+    // ===============================
+    // CHECKOUT
+    // ===============================
+
+    function goToCheckout() {
+
+        if (cart.length === 0) {
+
+            alert(
+                "Please add products to your cart first."
+            );
+
+            return;
+        }
+
+
+        window.location.href =
+            "checkout.html";
+    }
+
+
+    // ===============================
+    // START
+    // ===============================
+
+    loadEstimate();
+
+</script>
+</body>
+</html>

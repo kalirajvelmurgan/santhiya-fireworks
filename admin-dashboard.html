@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard - Santhiya Firework Agencies</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+
+    <section class="admin-dashboard-section">
+
+        <div class="section-title">
+            <span>ADMIN PANEL</span>
+            <h2>🎆 Product Management</h2>
+            <p>Add, edit and manage your fireworks products.</p>
+        </div>
+
+        <div class="admin-actions">
+
+            <button class="btn primary" onclick="showAddProductForm()">
+                ➕ Add Product
+            </button>
+
+            <button class="btn" onclick="adminLogout()">
+                Logout
+            </button>
+
+        </div>
+
+
+        <!-- PRODUCT FORM -->
+
+       <!-- DISCOUNT SETTINGS -->
+
+<div class="discount-settings-card">
+
+    <div class="discount-settings-header">
+
+        <div class="discount-settings-icon">
+            🏷️
+        </div>
+
+        <div>
+            <h3>Discount Settings</h3>
+            <p>Set the discount percentage for customer orders.</p>
+        </div>
+
+    </div>
+
+    <div class="discount-control">
+
+        <label for="discount-percent">
+            Discount Percentage
+        </label>
+
+        <div class="discount-input-wrap">
+
+            <input
+                type="number"
+                id="discount-percent"
+                min="0"
+                max="100"
+                step="1"
+                placeholder="0"
+            >
+
+            <span>%</span>
+
+        </div>
+
+        <button
+            class="btn primary"
+            onclick="saveDiscount()">
+            💾 Save Discount
+        </button>
+
+    </div>
+
+    <p id="discount-message"></p>
+
+</div>
+        <div id="product-form" style="display: none;">
+
+            <h3 id="form-title">Add New Product</h3>
+
+            <input type="hidden" id="edit-product-id">
+
+            <input
+                type="text"
+                id="product-name"
+                placeholder="Product name"
+            >
+
+            <input
+                type="text"
+                id="product-description"
+                placeholder="Description"
+            >
+
+            <input
+                type="number"
+                id="product-price"
+                placeholder="Price"
+            >
+
+            <input
+                type="text"
+                id="product-image"
+                placeholder="Image URL"
+            >
+
+            <input
+                type="text"
+                id="product-category"
+                placeholder="Category"
+            >
+
+            <label>
+                <input
+                    type="checkbox"
+                    id="product-available"
+                    checked
+                >
+                Available
+            </label>
+
+
+            <div>
+
+                <button
+                    class="btn primary"
+                    id="save-product-btn"
+                    onclick="addProduct()"
+                >
+                    Save Product
+                </button>
+
+                <button
+                    class="btn"
+                    onclick="cancelEdit()"
+                >
+                    Cancel
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCTS -->
+
+        <div id="admin-products">
+            <!-- Products will appear here -->
+        </div>
+        <!-- ORDERS -->
+<!-- ===============================
+     PROFESSIONAL ORDER MANAGEMENT
+================================ -->
+
+<div class="orders-section">
+
+    <div class="section-title">
+        <span>ORDER MANAGEMENT</span>
+        <h2>🧾 Customer Orders</h2>
+        <p>Manage and track all customer orders.</p>
+    </div>
+
+
+    <!-- ORDER SUMMARY -->
+
+    <div class="order-stats">
+
+        <div class="order-stat-card">
+            <span>📦</span>
+            <div>
+                <small>Total Orders</small>
+                <h3 id="total-orders">0</h3>
+            </div>
+        </div>
+
+        <div class="order-stat-card pending">
+            <span>🟡</span>
+            <div>
+                <small>Pending</small>
+                <h3 id="pending-orders">0</h3>
+            </div>
+        </div>
+
+        <div class="order-stat-card confirmed">
+            <span>🟢</span>
+            <div>
+                <small>Confirmed</small>
+                <h3 id="confirmed-orders">0</h3>
+            </div>
+        </div>
+
+        <div class="order-stat-card rejected">
+            <span>🔴</span>
+            <div>
+                <small>Rejected</small>
+                <h3 id="rejected-orders">0</h3>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- ORDER FILTER -->
+
+    <div class="order-filters">
+
+        <button
+            class="order-filter active"
+            onclick="filterOrders('All', this)">
+            All Orders
+        </button>
+
+        <button
+            class="order-filter"
+            onclick="filterOrders('Pending', this)">
+            🟡 Pending
+        </button>
+
+        <button
+            class="order-filter"
+            onclick="filterOrders('Confirmed', this)">
+            🟢 Confirmed
+        </button>
+        <button
+               class="order-filter download-confirmed-btn"
+              onclick="downloadConfirmedOrdersPDF()">
+              📄 Download Confirmed PDF
+        </button>
+
+        <button
+            class="order-filter"
+            onclick="filterOrders('Rejected', this)">
+            🔴 Rejected
+        </button>
+
+    </div>
+
+
+    <!-- ORDERS -->
+
+    <div id="admin-orders">
+
+        <p>Loading orders...</p>
+
+    </div>
+
+</div>
+
+
+    </section>
+
+
+    <script src="admin-dashboard.js"></script>
+
+</body>
+
+</html>

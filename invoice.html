@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Invoice - Santhiya Firework Agencies</title>
+
+<link rel="stylesheet" href="style.css">
+```
+
+</head>
+
+<body>
+
+<section class="invoice-page">
+
+```
+<div class="invoice">
+
+    <!-- HEADER -->
+
+    <div class="invoice-header">
+
+        <div class="invoice-brand">
+
+            <div class="invoice-logo">
+
+                <img
+                    src="logo.png"
+                    alt="Santhiya Firework Agencies Logo">
+
+            </div>
+
+            <div class="invoice-shop-info">
+
+                <h1>
+                    Santhiya Firework Agencies
+                </h1>
+
+                <p>
+                    Premium Fireworks & Crackers
+                </p>
+
+                <small>
+                    🎆 Celebrate Brighter • Create Memories
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="invoice-title">
+
+            <h2>INVOICE</h2>
+
+            <span>
+                Official Order Invoice
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- ORDER DETAILS -->
+
+    <div class="invoice-details">
+
+        <div>
+
+            <span>Order ID</span>
+
+            <strong id="invoice-order-id">
+                ---
+            </strong>
+
+        </div>
+
+
+        <div>
+
+            <span>Order Date</span>
+
+            <strong id="invoice-date">
+                ---
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- CUSTOMER DETAILS -->
+
+    <div class="invoice-section">
+
+        <h3>
+            👤 Customer Details
+        </h3>
+
+
+        <div class="customer-details">
+
+            <div>
+
+                <span>Name</span>
+
+                <strong id="invoice-customer-name">
+                    ---
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>Phone</span>
+
+                <strong id="invoice-customer-phone">
+                    ---
+                </strong>
+
+            </div>
+
+
+            <div class="address">
+
+                <span>Delivery Address</span>
+
+                <strong id="invoice-customer-address">
+                    ---
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ORDER ITEMS -->
+
+    <div class="invoice-section">
+
+        <h3>
+            🛒 Order Details
+        </h3>
+
+
+        <div class="invoice-items-heading">
+
+            <span>#</span>
+
+            <span>Product</span>
+
+            <span>Price × Qty</span>
+
+            <span>Total</span>
+
+        </div>
+
+
+        <div id="invoice-items">
+
+            <!-- Products will appear here -->
+
+        </div>
+
+    </div>
+
+
+    <!-- PRICE SUMMARY -->
+
+    <div class="invoice-summary">
+
+        <div class="invoice-price-row">
+
+            <span>
+                Subtotal
+            </span>
+
+            <strong id="invoice-subtotal">
+                ₹0
+            </strong>
+
+        </div>
+
+
+        <div class="invoice-price-row discount">
+
+            <span>
+                🏷️ Discount
+            </span>
+
+            <strong id="invoice-discount">
+                No Discount
+            </strong>
+
+        </div>
+
+
+        <div class="invoice-final-total">
+
+            <span>
+                FINAL TOTAL
+            </span>
+
+            <strong id="invoice-total">
+                ₹0
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- THANK YOU -->
+
+    <div class="invoice-thankyou">
+
+        <strong>
+            Thank you for choosing
+            Santhiya Firework Agencies! 🎆
+        </strong>
+
+        <p>
+            Premium fireworks for every celebration.
+        </p>
+
+    </div>
+
+
+    <!-- BUTTONS -->
+
+    <div class="invoice-actions">
+
+        <button
+            class="btn primary"
+            onclick="printInvoice()">
+
+            🖨️ Print / Save PDF
+
+        </button>
+
+
+        <button
+            class="btn secondary"
+            onclick="sendWhatsApp()">
+
+            📱 Send Order via WhatsApp
+
+        </button>
+
+
+        <button
+            class="btn"
+            onclick="window.location.href='index.html'">
+
+            🏠 Back to Home
+
+        </button>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <div class="invoice-footer">
+
+        <span>
+            Santhiya Firework Agencies
+        </span>
+
+        <span>
+            Premium Fireworks • Sivakasi
+        </span>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<script src="invoice.js"></script>
+
+</body>
+
+</html>
