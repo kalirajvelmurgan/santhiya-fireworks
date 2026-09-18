@@ -10,7 +10,7 @@ let finalTotal = 0;
 
 
 // =========================================
-// LOAD DISCOUNT FROM SUPABASE
+// LOAD DISCOUNT
 // =========================================
 
 async function loadDiscount() {
@@ -21,7 +21,8 @@ async function loadDiscount() {
         {
             headers: {
                 "apikey": SUPABASE_KEY,
-                "Authorization": "Bearer " + SUPABASE_KEY
+                "Authorization": "Bearer " + SUPABASE_KEY,
+                "Content-Type": "application/json"
             }
         }
     );
@@ -62,7 +63,7 @@ async function displayCheckout() {
     if (cart.length === 0) {
 
         checkoutItems.innerHTML =
-            `<p>Your cart is empty.</p>`;
+            "<p>Your cart is empty.</p>";
 
     } else {
 
@@ -94,12 +95,8 @@ async function displayCheckout() {
     }
 
 
-    // GET DISCOUNT
-
     discountPercent = await loadDiscount();
 
-
-    // CALCULATE DISCOUNT
 
     discountAmount =
         Math.round(
@@ -107,13 +104,9 @@ async function displayCheckout() {
         );
 
 
-    // FINAL TOTAL
-
     finalTotal =
         subtotal - discountAmount;
 
-
-    // DISPLAY
 
     document.getElementById(
         "checkout-subtotal"
@@ -130,21 +123,22 @@ async function displayCheckout() {
     ).textContent = finalTotal;
 
 
-    // DISCOUNT MESSAGE
-
     const discountInfo =
         document.querySelector(".discount-info");
 
-    if (discountPercent > 0) {
+    if (discountInfo) {
 
-        discountInfo.style.display = "block";
+        if (discountPercent > 0) {
 
-        discountInfo.textContent =
-            `🎉 ${discountPercent}% discount applied — You save ₹${discountAmount}`;
+            discountInfo.style.display = "block";
 
-    } else {
+            discountInfo.textContent =
+                `🎉 ${discountPercent}% discount applied — You save ₹${discountAmount}`;
 
-        discountInfo.style.display = "none";
+        } else {
+
+            discountInfo.style.display = "none";
+        }
     }
 }
 
@@ -190,12 +184,8 @@ async function confirmOrder() {
     }
 
 
-    // LOAD LATEST DISCOUNT
-
     discountPercent = await loadDiscount();
 
-
-    // CALCULATE AGAIN
 
     subtotal = 0;
 
@@ -222,192 +212,213 @@ async function confirmOrder() {
         Date.now().toString().slice(-6);
 
 
+    // =========================================
     // SAVE ORDER
+    // =========================================
 
-    const response = await fetch(
-        SUPABASE_URL + "/rest/v1/orders",
-        {
-            method: "POST",
+    try {
 
-            headers: {
+        const response = await fetch(
+            SUPABASE_URL + "/rest/v1/orders",
+            {
+                method: "POST",
 
-                "apikey": SUPABASE_KEY,
+                headers: {
+                    "apikey": SUPABASE_KEY,
+                    "Authorization":
+                        "Bearer " + SUPABASE_KEY,
+                    "Content-Type":
+                        "application/json",
+                    "Prefer": "return=minimal"
+                },
 
-                "Authorization":
-                    "Bearer " + SUPABASE_KEY,
+                body: JSON.stringify({
 
-                "Content-Type":
-                    "application/json",
+                    order_id: orderId,
 
-                "Prefer":
-                    "return=representation"
-            },
+                    customer_name: name,
 
-            body: JSON.stringify({
+                    customer_phone: phone,
 
-                order_id: orderId,
+                    customer_address: address,
 
-                customer_name: name,
+                    items: cart,
 
-                customer_phone: phone,
+                    total: finalTotal,
 
-                customer_address: address,
+                    status: "Pending"
 
-                items: cart,
+                })
+            }
+        );
 
-                total: finalTotal,
 
-                status: "Pending"
+        if (!response.ok) {
 
-            })
+            const error =
+                await response.json();
+
+            console.log(
+                "ORDER ERROR:",
+                error
+            );
+
+            alert(
+                "Order could not be placed.\n\n" +
+                (
+                    error.message ||
+                    JSON.stringify(error)
+                )
+            );
+
+            return;
         }
-    );
 
 
-    if (!response.ok) {
+        // =========================================
+        // SAVE ORDER DETAILS
+        // =========================================
 
-        const error =
-            await response.json();
+        localStorage.setItem(
+            "orderId",
+            orderId
+        );
 
-        console.log(
-            "ORDER ERROR:",
+        localStorage.setItem(
+            "customerName",
+            name
+        );
+
+        localStorage.setItem(
+            "customerPhone",
+            phone
+        );
+
+        localStorage.setItem(
+            "customerAddress",
+            address
+        );
+
+        localStorage.setItem(
+            "orderTotal",
+            finalTotal
+        );
+
+        localStorage.setItem(
+            "orderSubtotal",
+            subtotal
+        );
+
+        localStorage.setItem(
+            "orderDiscountPercent",
+            discountPercent
+        );
+
+        localStorage.setItem(
+            "orderDiscountAmount",
+            discountAmount
+        );
+
+
+        // =========================================
+        // WHATSAPP MESSAGE
+        // =========================================
+
+        let whatsappMessage =
+            "🧾 *NEW ORDER - SANTHIYA FIREWORK AGENCIES*%0A%0A";
+
+
+        whatsappMessage +=
+            "🆔 Order ID: " +
+            orderId +
+            "%0A";
+
+
+        whatsappMessage +=
+            "👤 Name: " +
+            name +
+            "%0A";
+
+
+        whatsappMessage +=
+            "📱 Phone: " +
+            phone +
+            "%0A";
+
+
+        whatsappMessage +=
+            "🏠 Address: " +
+            address +
+            "%0A%0A";
+
+
+        whatsappMessage +=
+            "📦 *ORDER DETAILS*%0A";
+
+
+        cart.forEach(item => {
+
+            whatsappMessage +=
+                "• " +
+                item.name +
+                " × " +
+                item.quantity +
+                " = ₹" +
+                (item.price * item.quantity) +
+                "%0A";
+
+        });
+
+
+        whatsappMessage +=
+            "%0A💰 Subtotal: ₹" +
+            subtotal;
+
+
+        if (discountPercent > 0) {
+
+            whatsappMessage +=
+                "%0A🏷️ Discount: " +
+                discountPercent +
+                "%25 (-₹" +
+                discountAmount +
+                ")";
+
+        }
+
+
+        whatsappMessage +=
+            "%0A💰 *Final Total: ₹" +
+            finalTotal +
+            "*";
+
+
+        localStorage.setItem(
+            "whatsappMessage",
+            whatsappMessage
+        );
+
+
+        // =========================================
+        // GO TO INVOICE
+        // =========================================
+
+        window.location.href =
+            "invoice.html";
+
+
+    } catch (error) {
+
+        console.error(
+            "ORDER SUBMIT ERROR:",
             error
         );
 
         alert(
-            "Order could not be placed.\n\n" +
-            (
-                error.message ||
-                JSON.stringify(error)
-            )
+            "Something went wrong while placing the order.\n\n" +
+            error.message
         );
-
-        return;
     }
-
-
-    // SAVE ORDER INFORMATION
-
-    localStorage.setItem(
-        "orderId",
-        orderId
-    );
-
-    localStorage.setItem(
-        "customerName",
-        name
-    );
-
-    localStorage.setItem(
-        "customerPhone",
-        phone
-    );
-
-    localStorage.setItem(
-        "customerAddress",
-        address
-    );
-
-    localStorage.setItem(
-        "orderTotal",
-        finalTotal
-    );
-
-    localStorage.setItem(
-        "orderSubtotal",
-        subtotal
-    );
-
-    localStorage.setItem(
-        "orderDiscountPercent",
-        discountPercent
-    );
-
-    localStorage.setItem(
-        "orderDiscountAmount",
-        discountAmount
-    );
-
-
-    // WHATSAPP MESSAGE
-
-    let whatsappMessage =
-        "🧾 *NEW ORDER - SANTHIYA FIREWORK AGENCIES*%0A%0A";
-
-
-    whatsappMessage +=
-        "🆔 Order ID: " +
-        orderId +
-        "%0A";
-
-
-    whatsappMessage +=
-        "👤 Name: " +
-        name +
-        "%0A";
-
-
-    whatsappMessage +=
-        "📱 Phone: " +
-        phone +
-        "%0A";
-
-
-    whatsappMessage +=
-        "🏠 Address: " +
-        address +
-        "%0A%0A";
-
-
-    whatsappMessage +=
-        "📦 *ORDER DETAILS*%0A";
-
-
-    cart.forEach(item => {
-
-        whatsappMessage +=
-            "• " +
-            item.name +
-            " × " +
-            item.quantity +
-            " = ₹" +
-            (item.price * item.quantity) +
-            "%0A";
-
-    });
-
-
-    whatsappMessage +=
-        "%0A💰 Subtotal: ₹" +
-        subtotal;
-
-
-    if (discountPercent > 0) {
-
-        whatsappMessage +=
-            "%0A🏷️ Discount: " +
-            discountPercent +
-            "%25 (-₹" +
-            discountAmount +
-            ")";
-
-    }
-
-
-    whatsappMessage +=
-        "%0A💰 *Final Total: ₹" +
-        finalTotal +
-        "*";
-
-
-    localStorage.setItem(
-        "whatsappMessage",
-        whatsappMessage
-    );
-
-
-    window.location.href =
-        "invoice.html";
 }
 
 
