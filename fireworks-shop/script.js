@@ -172,6 +172,57 @@ function changeProductQuantity(productId, change) {
         quantityElement.textContent =
             selectedQuantities[productId];
     }
+    updateLiveTotal();
+}
+// ===============================
+// LIVE SELECTED TOTAL
+// ===============================
+
+function updateLiveTotal() {
+
+    let subtotal = 0;
+
+    Object.keys(selectedQuantities).forEach(productId => {
+
+        const quantity =
+            Number(selectedQuantities[productId]) || 0;
+
+        if (quantity <= 0) {
+            return;
+        }
+
+        const product =
+            allProducts.find(
+                item => String(item.id) === String(productId)
+            );
+
+        if (!product) {
+            return;
+        }
+
+        subtotal +=
+            Number(product.price) * quantity;
+    });
+
+
+    const discountAmount =
+        Math.round(
+            subtotal * discountPercent / 100
+        );
+
+    const finalTotal =
+        subtotal - discountAmount;
+
+
+    const liveTotal =
+        document.getElementById("live-total");
+
+    if (liveTotal) {
+
+        liveTotal.textContent =
+            finalTotal.toLocaleString("en-IN");
+
+    }
 }
 // ===============================
 // SEARCH PRODUCTS
@@ -470,7 +521,35 @@ function updateCart() {
         cartTotal.textContent =
             finalTotal.toLocaleString("en-IN");
     }
+// ===============================
+// MINIMUM ORDER ₹3500
+// ===============================
 
+const estimateAction =
+    document.getElementById("estimate-action");
+
+if (estimateAction) {
+
+    if (finalTotal >= 3500) {
+
+        estimateAction.innerHTML = `
+            <a
+                href="estimate.html"
+                class="btn primary">
+                🧾 View Estimate
+            </a>
+        `;
+
+    } else {
+
+        estimateAction.innerHTML = `
+            <div class="minimum-order-message">
+                🔒 Minimum order amount ₹3,500
+            </div>
+        `;
+
+    }
+}
 
     // ===============================
     // SAVE CART
@@ -491,9 +570,6 @@ function increaseQuantity(index) {
 
     updateCart();
 
-    displayProducts(
-        getFilteredProducts()
-    );
 }
 
 
@@ -515,9 +591,6 @@ function decreaseQuantity(index) {
 
     updateCart();
 
-    displayProducts(
-        getFilteredProducts()
-    );
 }
 
 
